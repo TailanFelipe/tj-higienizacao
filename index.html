@@ -72,11 +72,39 @@ section.bloco .sub{color:var(--cinza);font-size:1.08rem;max-width:56ch}
 /* passos */
 .passos{background:var(--grafite);color:#fff}
 .passos .sub{color:#aeb4ba}
-.passos ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;counter-reset:p}
-.passos li{border-top:3px solid var(--azul);padding-top:18px}
-.passos li span{font-family:Anton,Archivo;font-weight:400;font-size:2.4rem;color:var(--azul);line-height:1}
-.passos li h3{font-family:Archivo;font-weight:800;font-size:1.2rem;margin:8px 0 4px}
+.passos ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;counter-reset:p;position:relative}
+.passos li{background:#22252a;border:1px solid #2e3238;border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.passos .vis{position:relative;aspect-ratio:1/1;background:#15171a;overflow:hidden}
+.passos .vis img{width:100%;height:100%;object-fit:cover}
+.passos .num{position:absolute;left:14px;bottom:8px;font-family:Anton,Archivo;font-size:3.4rem;line-height:1;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.passos .ico{position:absolute;right:12px;bottom:12px;width:42px;height:42px;border-radius:50%;background:var(--azul);display:grid;place-items:center}
+.passos .ico svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.passos .txt{padding:16px 18px 20px}
+.passos li h3{font-family:Archivo;font-weight:800;font-size:1.2rem;margin:0 0 4px}
 .passos li p{color:#b9bfc5;font-size:.95rem}
+.passos .mira{position:absolute;inset:14% 16%;pointer-events:none}
+.passos .mira i{position:absolute;width:26px;height:26px;border:3px solid #fff}
+.passos .mira i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0}.passos .mira i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0}
+.passos .mira i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0}.passos .mira i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0}
+.passos .chat{display:flex;flex-direction:column;gap:8px;padding:16px 14px 74px;height:100%;background:#0b141a}
+.passos .bal{max-width:84%;padding:8px 11px;border-radius:10px;font-size:.8rem;line-height:1.35;color:#e9edef}
+.passos .bal.eu{align-self:flex-end;background:#005c4b;border-top-right-radius:2px}
+.passos .bal.tj{align-self:flex-start;background:#202c33;border-top-left-radius:2px}
+.passos .bal b{color:#53bdeb}
+.passos .bal small{display:block;text-align:right;font-size:.65rem;color:#8696a0;margin-top:2px}
+.passos .cal{padding:16px 16px 74px;height:100%;display:flex;flex-direction:column;gap:10px;background:#15171a}
+.passos .cal .mes{font-weight:700;font-size:.85rem;color:#fff;display:flex;justify-content:space-between}
+.passos .cal .dias{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.passos .cal .dias span{aspect-ratio:1;display:grid;place-items:center;border-radius:8px;background:#22252a;color:#9aa1a8;font-size:.78rem;font-weight:600}
+.passos .cal .dias span.on{background:var(--azul);color:#fff}
+.passos .cal .hora{display:flex;gap:6px}.passos .cal .hora span{flex:1;text-align:center;padding:7px 0;border-radius:999px;border:1px solid #2e3238;font-size:.75rem;color:#c9ced3}
+.passos .cal .ok{margin-top:auto;align-self:flex-start;padding:7px 12px;border-radius:8px;background:rgba(37,211,102,.14);color:#7fe0a5;font-size:.78rem;font-weight:600}
+.passos .cal .hora span.on{border-color:var(--azul);color:#fff;background:rgba(29,144,198,.18)}
+.passos .faixa{margin-top:28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:22px 26px;border-radius:16px;background:linear-gradient(90deg,rgba(29,144,198,.22),rgba(29,144,198,.06));border:1px solid rgba(29,144,198,.4)}
+.passos .faixa strong{font-family:Anton,Archivo;font-weight:400;text-transform:uppercase;font-size:1.6rem;letter-spacing:.01em}
+.passos .faixa p{color:#c9ced3;font-size:.95rem;margin-top:2px}
+.passos .selos{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;color:#c9ced3;font-size:.9rem}
+.passos .selos span::before{content:"✓";color:var(--azul);font-weight:800;margin-right:7px}
 
 /* formulario */
 .orc{background:var(--fundo)}
@@ -153,6 +181,7 @@ footer .cont{display:grid;gap:6px}
   section.bloco{padding:60px 0}
 }
 @media (max-width:640px){
+  .passos .vis{aspect-ratio:4/3}
   .porque .grid{grid-template-columns:1fr}
   .galeria .grid{grid-template-columns:1fr 1fr;gap:8px}
   .hero h1{font-size:clamp(2.3rem,11vw,3rem)}
@@ -229,11 +258,25 @@ footer .cont{display:grid;gap:6px}
     <h2 class="tit" style="margin-top:12px">Do orçamento ao sofá limpo</h2>
     <div class="fio"></div>
     <ol>
-      <li><span>1</span><h3>Manda a foto</h3><p>Uma foto de cada estofado e o seu bairro ou cidade.</p></li>
-      <li><span>2</span><h3>Recebe o valor</h3><p>A gente responde pelo WhatsApp com o orçamento.</p></li>
-      <li><span>3</span><h3>Escolhe o dia</h3><p>Combinamos o dia e o horário que ficam melhor para você.</p></li>
-      <li><span>4</span><h3>A TJ vai até você</h3><p>Aspiração, produto, extração e acabamento, aí mesmo na sua casa.</p></li>
+      <li><div class="vis"><img src="img/sofa-sujo.jpg" alt="Foto de um sofá retrátil" loading="lazy"><div class="mira"><i></i><i></i><i></i><i></i></div><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><span class="num">1</span></div>
+        <div class="txt"><h3>Manda a foto</h3><p>Uma foto de cada estofado e o seu bairro ou cidade.</p></div></li>
+      <li><div class="vis"><div class="chat">
+          <div class="bal eu">Oi! Quanto fica pra lavar meu sofá de 3 lugares? Sou do Centro.<small>09:12</small></div>
+          <div class="bal tj">Bom dia! Pela foto já te passo o <b>valor</b>. Qual dia fica melhor?<small>09:15</small></div>
+        </div><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg></div><span class="num">2</span></div>
+        <div class="txt"><h3>Recebe o valor</h3><p>A gente responde pelo WhatsApp com o orçamento.</p></div></li>
+      <li><div class="vis"><div class="cal">
+          <div class="mes"><span>Escolha o dia</span></div>
+          <div class="dias"><span>Seg</span><span>Ter</span><span class="on">Qua</span><span>Qui</span><span>Sex</span><span class="on">Sáb</span></div>
+          <div class="hora"><span class="on">Manhã</span><span>Tarde</span></div>
+          <div class="ok">✓ Quarta, de manhã: confirmado</div>
+        </div><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></div><span class="num">3</span></div>
+        <div class="txt"><h3>Escolhe o dia</h3><p>Combinamos o dia e o horário que ficam melhor para você.</p></div></li>
+      <li><div class="vis"><img src="img/equipe-escova.jpg" alt="Profissional da TJ fazendo o acabamento no sofá" loading="lazy"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-5h4v5"/></svg></div><span class="num">4</span></div>
+        <div class="txt"><h3>A TJ vai até você</h3><p>Aspiração, produto, extração e acabamento, aí mesmo na sua casa.</p></div></li>
     </ol>
+    <div class="selos"><span>Orçamento sem compromisso</span><span>Atendimento com hora marcada</span><span>Equipamento completo</span><span>Lajedo e região</span></div>
+    <div class="faixa"><div><strong>Leva 1 minuto pra pedir</strong><p>Manda a foto e a gente responde com o valor.</p></div><a class="btn" href="#orcamento">Quero meu orçamento</a></div>
   </div>
 </section>
 
